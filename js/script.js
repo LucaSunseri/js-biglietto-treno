@@ -19,21 +19,28 @@ let kmOrAgeWrong = false;
 
 if ((isNaN(age)) || (isNaN(km))) {
   kmOrAgeWrong = true;
+} else if ((age || km) === 0) {
+  kmOrAgeWrong = true;
 }
 
 // const Discount
 const discount20 = (((km * priceKm) * 20) / 100).toFixed(2);
+// console.log('Sconto20',discount20);
 const discount40 = (((km * priceKm) * 40) / 100).toFixed(2);
+// console.log('Sconto40',discount40);
 
+let totalPrice = km * priceKm;
+// console.log('Prezzo totale',totalPrice);
 
-let totalPrice = (km * priceKm).toFixed(2);
-
-
+// Discount if you are less 20 years o more 65
 if (age < 18) {
   totalPrice = totalPrice - discount20; 
 } else if (age >= 65) {
   totalPrice = totalPrice - discount40;
 }
+
+totalPrice = totalPrice.toFixed(2);
+// console.log('Prezzo totale 2numeri',totalPrice);
 
 // Discount with code SCONTO20 if you are less 20 years
 if (((discountCode === 'CODICE20') || (discountCode === 'codice20')) && (age < 20))
